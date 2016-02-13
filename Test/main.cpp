@@ -110,27 +110,23 @@ void player_turn(){
 }// player_turn end
 
 int game_result(){
-    char one= board[0][0];
-    char two= board[0][1];
-    char three= board[0][2];
-    char four= board[1][0];
-    char five= board[1][1];
-    char six= board[1][2];
-    char sev= board[2][0];
-    char eight= board[2][1];
-    char nine= board[2][2];
-    if ((one == five && one == nine)||
-        (one == two && one == three)||
-        (one == four && one == sev)||
-        (two == five && two == eight)||
-        (three == five && three == sev)||
-        (three == six && six == nine)||
-        (four == five && four == six)||
-        (sev == eight && sev == nine)){
+    int count;
+    if ((board[0][0] == board[1][1] && board[0][0] == board[2][2])||
+        (board[0][0] == board[0][1] && board[0][0] == board[0][2])||
+        (board[0][0] == board[1][0] && board[0][0] == board[2][0])||
+        (board[0][1] == board[1][1] && board[0][1] == board[2][1])||
+        (board[0][2] == board[1][1] && board[0][2] == board[2][0])||
+        (board[0][2] == board[1][2] && board[1][2] == board[2][2])||
+        (board[1][0] == board[1][1] && board[1][0] == board[1][2])||
+        (board[2][0] == board[2][1] && board[2][0] == board[2][2])){
 
             display_board();
             cout << "Player " << turn << " Win.\n";
             exit(0);// game ended
-    }else
+    }else if(count == 9){
+        for(count=0; count<9;count++);
+        cout << "Tie.";
+        exit(0);
+    } else
     return 1;
 }//game_result end
